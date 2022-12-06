@@ -13,7 +13,6 @@ class HttpSslPinning {
 
   static Future<http.Client> get _instance async => _clientInstance ??= await createLecClient();
 
-
   static Future<void> init() async {
     _clientInstance = await _instance;
   }
