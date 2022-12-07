@@ -8,7 +8,6 @@ import 'package:ditonton/data/models/tv/tv_detail_response.dart';
 import 'package:ditonton/data/models/tv/tv_model.dart';
 import 'package:ditonton/data/repositories/tv_series_repository_impl.dart';
 import 'package:ditonton/domain/entities/tv.dart';
-import 'package:ditonton/domain/entities/tv_detail.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
@@ -114,6 +113,16 @@ void main() {
       verify(mockRemoteDataSource.getTvSeriesAiringToday());
       expect(result, Left(ConnectionFailure("Failed to connect to the network")));
     });
+
+    test('should return handshake failure when certificate doesn\'t match with server', () async {
+      when(mockRemoteDataSource.getTvSeriesAiringToday())
+          .thenThrow(HandshakeException("Failed to connect due to technical issue, please contact developer"));
+
+      final result  = await repository.getTvSeriesAiringToday();
+
+      verify(mockRemoteDataSource.getTvSeriesAiringToday());
+      expect(result, equals(Left(HandshakeFailure("Failed to connect due to technical issue, please contact developer"))));
+    });
   });
 
   group("popular tv series", () {
@@ -143,6 +152,16 @@ void main() {
 
       verify(mockRemoteDataSource.getPopularTvSeries());
       expect(result, Left(ConnectionFailure("Failed to connect to the network")));
+    });
+
+    test('should return handshake failure when certificate doesn\'t match with server', () async {
+      when(mockRemoteDataSource.getPopularTvSeries())
+          .thenThrow(HandshakeException("Failed to connect due to technical issue, please contact developer"));
+
+      final result  = await repository.getPopularTvSeries();
+
+      verify(mockRemoteDataSource.getPopularTvSeries());
+      expect(result, equals(Left(HandshakeFailure("Failed to connect due to technical issue, please contact developer"))));
     });
   });
 
@@ -174,6 +193,16 @@ void main() {
       verify(mockRemoteDataSource.getTopRatedTvSeries());
       expect(result, Left(ConnectionFailure("Failed to connect to the network")));
     });
+
+    test('should return handshake failure when certificate doesn\'t match with server', () async {
+      when(mockRemoteDataSource.getTopRatedTvSeries())
+          .thenThrow(HandshakeException("Failed to connect due to technical issue, please contact developer"));
+
+      final result  = await repository.getTopRatedTvSeries();
+
+      verify(mockRemoteDataSource.getTopRatedTvSeries());
+      expect(result, equals(Left(HandshakeFailure("Failed to connect due to technical issue, please contact developer"))));
+    });
   });
 
   group("get tv series detail", () {
@@ -202,6 +231,16 @@ void main() {
 
       verify(mockRemoteDataSource.getTvSeriesDetail(tId));
       expect(result, Left(ConnectionFailure("Failed to connect to the network")));
+    });
+
+    test('should return handshake failure when certificate doesn\'t match with server', () async {
+      when(mockRemoteDataSource.getTvSeriesDetail(tId))
+          .thenThrow(HandshakeException("Failed to connect due to technical issue, please contact developer"));
+
+      final result  = await repository.getTvSeriesDetail(tId);
+
+      verify(mockRemoteDataSource.getTvSeriesDetail(tId));
+      expect(result, equals(Left(HandshakeFailure("Failed to connect due to technical issue, please contact developer"))));
     });
   });
 
@@ -236,6 +275,16 @@ void main() {
       verify(mockRemoteDataSource.getTvSeriesRecommendations(tId));
       expect(result, equals(Left(ConnectionFailure("Failed to connect to the network"))));
     });
+
+    test('should return handshake failure when certificate doesn\'t match with server', () async {
+      when(mockRemoteDataSource.getTvSeriesRecommendations(tId))
+          .thenThrow(HandshakeException("Failed to connect due to technical issue, please contact developer"));
+
+      final result  = await repository.getTvSeriesRecommendations(tId);
+
+      verify(mockRemoteDataSource.getTvSeriesRecommendations(tId));
+      expect(result, equals(Left(HandshakeFailure("Failed to connect due to technical issue, please contact developer"))));
+    });
   });
 
   group("search tv series", () {
@@ -267,6 +316,16 @@ void main() {
 
       verify(mockRemoteDataSource.searchTvSeriesList(query));
       expect(result, Left(ConnectionFailure("Failed to connect to the network")));
+    });
+
+    test('should return handshake failure when certificate doesn\'t match with server', () async {
+      when(mockRemoteDataSource.searchTvSeriesList(query))
+          .thenThrow(HandshakeException("Failed to connect due to technical issue, please contact developer"));
+
+      final result  = await repository.searchTvSeriesList(query);
+
+      verify(mockRemoteDataSource.searchTvSeriesList(query));
+      expect(result, equals(Left(HandshakeFailure("Failed to connect due to technical issue, please contact developer"))));
     });
   });
 

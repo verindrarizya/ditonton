@@ -29,6 +29,8 @@ class TvSeriesRepositoryImpl implements TvSeriesRepository {
       return Left(ServerFailure(''));
     } on SocketException {
       return Left(ConnectionFailure("Failed to connect to the network"));
+    } on HandshakeException {
+      return Left(HandshakeFailure("Failed to connect due to technical issue, please contact developer"));
     }
   }
 
@@ -41,6 +43,8 @@ class TvSeriesRepositoryImpl implements TvSeriesRepository {
       return Left(ServerFailure(''));
     } on SocketException {
       return Left(ConnectionFailure("Failed to connect to the network"));
+    } on HandshakeException {
+      return Left(HandshakeFailure("Failed to connect due to technical issue, please contact developer"));
     }
   }
 
@@ -53,6 +57,8 @@ class TvSeriesRepositoryImpl implements TvSeriesRepository {
       return Left(ServerFailure(''));
     } on SocketException {
       return Left(ConnectionFailure("Failed to connect to the network"));
+    } on HandshakeException {
+      return Left(HandshakeFailure("Failed to connect due to technical issue, please contact developer"));
     }
   }
 
@@ -65,6 +71,8 @@ class TvSeriesRepositoryImpl implements TvSeriesRepository {
       return Left(ServerFailure(""));
     } on SocketException {
       return Left(ConnectionFailure("Failed to connect to the network"));
+    } on HandshakeException {
+      return Left(HandshakeFailure("Failed to connect due to technical issue, please contact developer"));
     }
   }
 
@@ -77,6 +85,8 @@ class TvSeriesRepositoryImpl implements TvSeriesRepository {
       return Left(ServerFailure(""));
     } on SocketException {
       return Left(ConnectionFailure("Failed to connect to the network"));
+    } on HandshakeException {
+      return Left(HandshakeFailure("Failed to connect due to technical issue, please contact developer"));
     }
   }
 
@@ -89,6 +99,8 @@ class TvSeriesRepositoryImpl implements TvSeriesRepository {
       return Left(ServerFailure(""));
     } on SocketException {
       return Left(ConnectionFailure("Failed to connect to the network"));
+    } on HandshakeException {
+      return Left(HandshakeFailure("Failed to connect due to technical issue, please contact developer"));
     }
   }
 

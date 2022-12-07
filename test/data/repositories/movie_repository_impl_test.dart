@@ -107,6 +107,16 @@ void main() {
       expect(result,
           equals(Left(ConnectionFailure('Failed to connect to the network'))));
     });
+
+    test('should return handshake failure when certificate doesn\'t match with server', () async {
+      when(mockRemoteDataSource.getNowPlayingMovies())
+          .thenThrow(HandshakeException("Failed to connect due to technical issue, please contact developer"));
+      
+      final result  = await repository.getNowPlayingMovies();
+      
+      verify(mockRemoteDataSource.getNowPlayingMovies());
+      expect(result, equals(Left(HandshakeFailure("Failed to connect due to technical issue, please contact developer"))));
+    });
   });
 
   group('Popular Movies', () {
@@ -147,6 +157,16 @@ void main() {
       expect(
           result, Left(ConnectionFailure('Failed to connect to the network')));
     });
+
+    test('should return handshake failure when certificate doesn\'t match with server', () async {
+      when(mockRemoteDataSource.getPopularMovies())
+          .thenThrow(HandshakeException("Failed to connect due to technical issue, please contact developer"));
+
+      final result  = await repository.getPopularMovies();
+
+      verify(mockRemoteDataSource.getPopularMovies());
+      expect(result, equals(Left(HandshakeFailure("Failed to connect due to technical issue, please contact developer"))));
+    });
   });
 
   group('Top Rated Movies', () {
@@ -185,6 +205,16 @@ void main() {
       // assert
       expect(
           result, Left(ConnectionFailure('Failed to connect to the network')));
+    });
+
+    test('should return handshake failure when certificate doesn\'t match with server', () async {
+      when(mockRemoteDataSource.getTopRatedMovies())
+          .thenThrow(HandshakeException("Failed to connect due to technical issue, please contact developer"));
+
+      final result  = await repository.getTopRatedMovies();
+
+      verify(mockRemoteDataSource.getTopRatedMovies());
+      expect(result, equals(Left(HandshakeFailure("Failed to connect due to technical issue, please contact developer"))));
     });
   });
 
@@ -253,6 +283,16 @@ void main() {
       expect(result,
           equals(Left(ConnectionFailure('Failed to connect to the network'))));
     });
+
+    test('should return handshake failure when certificate doesn\'t match with server', () async {
+      when(mockRemoteDataSource.getMovieDetail(tId))
+          .thenThrow(HandshakeException("Failed to connect due to technical issue, please contact developer"));
+
+      final result  = await repository.getMovieDetail(tId);
+
+      verify(mockRemoteDataSource.getMovieDetail(tId));
+      expect(result, equals(Left(HandshakeFailure("Failed to connect due to technical issue, please contact developer"))));
+    });
   });
 
   group('Get Movie Recommendations', () {
@@ -299,6 +339,16 @@ void main() {
       expect(result,
           equals(Left(ConnectionFailure('Failed to connect to the network'))));
     });
+
+    test('should return handshake failure when certificate doesn\'t match with server', () async {
+      when(mockRemoteDataSource.getMovieRecommendations(tId))
+          .thenThrow(HandshakeException("Failed to connect due to technical issue, please contact developer"));
+
+      final result  = await repository.getMovieRecommendations(tId);
+
+      verify(mockRemoteDataSource.getMovieRecommendations(tId));
+      expect(result, equals(Left(HandshakeFailure("Failed to connect due to technical issue, please contact developer"))));
+    });
   });
 
   group('Seach Movies', () {
@@ -339,6 +389,16 @@ void main() {
       // assert
       expect(
           result, Left(ConnectionFailure('Failed to connect to the network')));
+    });
+
+    test('should return handshake failure when certificate doesn\'t match with server', () async {
+      when(mockRemoteDataSource.searchMovies(tQuery))
+          .thenThrow(HandshakeException("Failed to connect due to technical issue, please contact developer"));
+
+      final result  = await repository.searchMovies(tQuery);
+
+      verify(mockRemoteDataSource.searchMovies(tQuery));
+      expect(result, equals(Left(HandshakeFailure("Failed to connect due to technical issue, please contact developer"))));
     });
   });
 
